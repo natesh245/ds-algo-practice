@@ -112,7 +112,22 @@ class SinglyList {
       return this;
     }
   }
-  reverse() {}
+  reverse() {
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+    let prev = null;
+
+    let next;
+    while (current) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+
+    return this;
+  }
 }
 
 const list = new SinglyList();
@@ -195,3 +210,5 @@ list.push("Node 3");
 // let result = list.remove(1);
 // console.log("__AFTER REMOVE___");
 // console.dir(result, { depth: null });
+
+console.dir(list.reverse(), { depth: null });
