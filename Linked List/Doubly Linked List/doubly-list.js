@@ -117,7 +117,20 @@ class DoublyList {
       return this;
     }
   }
-  reverse() {}
+  reverse() {
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+
+    while (current) {
+      let next = current.next;
+      let prev = current.prev;
+      current.prev = next;
+      current.next = prev;
+      current = next;
+    }
+    return this;
+  }
 }
 
 const list = new DoublyList();
@@ -156,3 +169,6 @@ console.dir(list, { depth: null });
 
 // console.log("AFTER INSERT");
 // console.dir(list.insert(1, "node 22"), { depth: null });
+
+console.log("AFTER REVERSE");
+console.dir(list.reverse(), { depth: null });
